@@ -1,0 +1,46 @@
+
+  /* reset defaults */
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* set css */
+.title {
+    background-color: yellow;
+    font-size: 50px;
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+   }
+   
+   .list {
+       box-sizing: border-box;
+       width: 48%;
+       height: 400px;
+       margin: auto;
+       border: 2px solid gray;
+       text-align: center;
+       padding: 7px;
+       list-style-type: none;
+   }
+   .search-container {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* hover states */
+  ul :hover {
+    background-color:yellow;
+    cursor: pointer;
+  }
+  .search-container :hover {
+    background-color:yellow;
+  }
