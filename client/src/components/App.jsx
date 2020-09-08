@@ -51,6 +51,7 @@ class App extends React.Component {
 
     //set state with render list
     this.setState({ movies: renderList })
+    event.preventDefault();
   }
 
 
