@@ -10,19 +10,11 @@ class MovieList extends React.Component {
     render() {
 
         return (
-            <div className='list'>
-                LIST
-                <div>
-                    <SearchBar searchFunc={this.props.searchFunc}/>
-                </div>
-
-                <ul>
-                    {this.props.movies.map(
-                        (entry, idx) => <MovieListEntry value={entry} key={entry + idx} />)
-                        }
-                </ul>
-            </div>
-
+            <ul>
+                {this.props.movies.map(
+                    (entry, idx) => <MovieListEntry value={entry} key={entry + idx} />)
+                }
+            </ul>
         )
     }
 

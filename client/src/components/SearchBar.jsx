@@ -7,19 +7,22 @@ class SearchBar extends React.Component {
 
     render() {
 
-        return (
-            <form onSubmit={this.props.searchFunc}>
-                <input type='text'></input>
-                 <input type="submit" value="Search" />
-            </form>
-           
-        )
+      return (
+        <form onSubmit={this.props.searchFunc}>
+          <input
+            type='text'
+            onChange={this.props.handleChange}
+          />
+          <input type="submit" value="Search" />
+        </form>
+
+      )
     }
 }
 
 export default SearchBar;
 
-/* 
+/*
  <div className="searchBar">
                 <input type="text" placeholder="Search.."></input>
                 <button className=".search-container"> GO!</button>

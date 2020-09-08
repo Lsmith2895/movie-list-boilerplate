@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieList from './MovieList.jsx';
+import SearchBar from './SearchBar.jsx';
 
 var movies = [
   { title: 'Mean Girls' },
@@ -19,32 +20,37 @@ class App extends React.Component {
       value: '',
     }
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSearch(event) {
-    console.log(event);
-    // var renderList = [];
-    // var LowerCasedMovieName = movieName.toLowerCase();
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
 
-    // //empty submission
-    // if (movieName.length === 0) {
-    //   this.setState({ movies: movies })
-    // }
+  handleSearch() {
+    var movieName = this.state.value;
+    var renderList = [];
+    var LowerCasedMovieName = movieName.toLowerCase();
 
-    // //it over movie list searching for title
-    // for (var movie of movies) {
-    //   if (movie.title.toLowerCase().includes(LowerCasedMovieName)) {
-    //     renderList.push(movie)
-    //   }
-    // }
+    //empty submission
+    if (movieName.length === 0) {
+      this.setState({ movies: movies })
+    }
 
-    // //movie not found
-    // if (renderList.length === 0) {
-    //   renderList.push({ title: 'MOVIE NOT FOUND TRY AGAIN' })
-    // }
+    //it over movie list searching for title
+    for (var movie of movies) {
+      if (movie.title.toLowerCase().includes(LowerCasedMovieName)) {
+        renderList.push(movie)
+      }
+    }
 
-    // //set state with render list
-    // this.setState({ movies: renderList })
+    //movie not found
+    if (renderList.length === 0) {
+      renderList.push({ title: 'MOVIE NOT FOUND TRY AGAIN' })
+    }
+
+    //set state with render list
+    this.setState({ movies: renderList })
   }
 
 
@@ -53,7 +59,15 @@ class App extends React.Component {
     return (
       <div>
         <div className='title'>LMDb</div>
-        <MovieList movies={this.state.movies} searchFunc={this.handleSearch} />
+        <div className='list'>
+          LIST
+          <SearchBar
+            handleChange={this.handleChange}
+            searchFunc={this.handleSearch}
+            value={this.state.value}
+          />
+          <MovieList movies={this.state.movies} />
+        </div>
       </div>
     )
   }
