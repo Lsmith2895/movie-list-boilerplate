@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [{title: 'Grub Getter IV'}],
+      movies: [{ title: 'Grub Getter IV' }],
       value: ''
     }
     this.handleSearch = this.handleSearch.bind(this);
@@ -49,10 +49,12 @@ class App extends React.Component {
   }
 
   handleAdd() {
-    var movieName = this.state.value; //title
-    var newState = this.state.movies; //state to mutate
-    newState.push({ title: movieName }) //add to existing array
-    this.setState({ movies: newState }) //set state to new values
+    if (this.state.value.length > 0) {
+      var movieName = this.state.value; //title
+      var newState = this.state.movies; //state to mutate
+      newState.push({ title: movieName }) //add to existing array
+      this.setState({ movies: newState }) //set state to new values
+    }
     event.preventDefault();
   }
 

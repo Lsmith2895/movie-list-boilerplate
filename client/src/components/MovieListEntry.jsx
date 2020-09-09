@@ -11,7 +11,7 @@ class MovieListEntry extends React.Component {
             <li>
                 {this.props.value.title}
                 <button 
-                class='watched' 
+                className='watched' 
                 type="button">WATCHED</button>
             </li>
         )

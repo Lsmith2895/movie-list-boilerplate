@@ -23,7 +23,7 @@ class AddBar extends React.Component {
 
 export default AddBar;
 
-//show only user added movies
-//change the way movies are rendered
-  //dont render the movie var in app.jsx
-  //do render the movie prop of state
+//todo 
+//fix css so watched isnt all over the place when list entry is added
+//fix handleAdd to not add list items if add bar is submitted empty
+//
