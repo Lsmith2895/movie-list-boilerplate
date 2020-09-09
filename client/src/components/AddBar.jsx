@@ -25,5 +25,11 @@ export default AddBar;
 
 //todo 
 //fix css so watched isnt all over the place when list entry is added
-//fix handleAdd to not add list items if add bar is submitted empty
-//
+//add toggle to watched button color
+//add toggl eto watch button to change movie state
+  //i.e. add a movie watched property to newly added items
+  //with a default value of 'to watch' eventually T or F
+  //in order to toggle which list it lives in
+
+  //kick off app in terminal with 
+    // npm run-script build, and live-server

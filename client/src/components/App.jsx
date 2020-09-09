@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [{ title: 'Grub Getter IV' }],
+      movies: [],
       value: ''
     }
     this.handleSearch = this.handleSearch.bind(this);
