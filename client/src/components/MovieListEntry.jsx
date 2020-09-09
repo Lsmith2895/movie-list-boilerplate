@@ -10,6 +10,9 @@ class MovieListEntry extends React.Component {
         return (
             <li>
                 {this.props.value.title}
+                <button 
+                class='watched' 
+                type="button">WATCHED</button>
             </li>
         )
     }

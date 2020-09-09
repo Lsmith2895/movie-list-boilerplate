@@ -26,10 +26,13 @@
        list-style-type: none;
    }
    
-
+.watched {
+  background-color: yellow;
+  float: right;
+  
+}
   /* hover states */
   ul :hover {
-    background-color:yellow;
     cursor: pointer;
   }
  

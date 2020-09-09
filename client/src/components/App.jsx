@@ -1,26 +1,20 @@
 import React from 'react';
 import MovieList from './MovieList.jsx';
 import SearchBar from './SearchBar.jsx';
+import AddBar from './AddBar.jsx';
 
-var movies = [
-  { title: 'Mean Girls' },
-  { title: 'Hackers' },
-  { title: 'The Grey' },
-  { title: 'Sunshine' },
-  { title: 'Ex Machina' },
-  { title: 'Lion, Witch, wardrobe' }
-];
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      movies: movies,
-      value: '',
+      movies: [{title: 'Grub Getter IV'}],
+      value: ''
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   handleChange(event) {
@@ -34,11 +28,11 @@ class App extends React.Component {
 
     //empty submission
     if (movieName.length === 0) {
-      this.setState({ movies: movies })
+      this.setState({ movies: this.state.movies })
     }
 
     //it over movie list searching for title
-    for (var movie of movies) {
+    for (var movie of this.state.movies) {
       if (movie.title.toLowerCase().includes(LowerCasedMovieName)) {
         renderList.push(movie)
       }
@@ -54,14 +48,27 @@ class App extends React.Component {
     event.preventDefault();
   }
 
+  handleAdd() {
+    var movieName = this.state.value; //title
+    var newState = this.state.movies; //state to mutate
+    newState.push({ title: movieName }) //add to existing array
+    this.setState({ movies: newState }) //set state to new values
+    event.preventDefault();
+  }
+
 
   render() {
 
     return (
       <div>
         <div className='title'>LMDb</div>
+
         <div className='list'>
-          LIST
+          <AddBar
+            handleChange={this.handleChange}
+            movies={this.state.movies}
+            AddMovie={this.handleAdd}
+          />
           <SearchBar
             handleChange={this.handleChange}
             searchFunc={this.handleSearch}

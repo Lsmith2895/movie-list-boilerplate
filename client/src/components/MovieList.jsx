@@ -14,6 +14,7 @@ class MovieList extends React.Component {
                 {this.props.movies.map(
                     (entry, idx) => <MovieListEntry value={entry} key={entry + idx} />)
                 }
+                
             </ul>
         )
     }
