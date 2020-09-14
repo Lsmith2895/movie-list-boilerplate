@@ -26,7 +26,7 @@ export default AddBar;
 //todo 
 //fix css so watched isnt all over the place when list entry is added
 //add toggle to watched button color
-//add toggl eto watch button to change movie state
+//add toggle to watch button to change movie state
   //i.e. add a movie watched property to newly added items
   //with a default value of 'to watch' eventually T or F
   //in order to toggle which list it lives in

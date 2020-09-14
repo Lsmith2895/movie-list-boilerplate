@@ -12,11 +12,14 @@ class MovieListEntry extends React.Component {
                 {this.props.value.title}
                 <button 
                 className='watched' 
-                type="button">WATCHED</button>
+                type="button" 
+                onClick={() => {
+                    this.props.toggle(this.props.value.title)
+                }}
+                >WATCHED</button>
             </li>
         )
     }
-
 }
 
 export default MovieListEntry;

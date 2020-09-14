@@ -1,10 +1,10 @@
 
   /* reset defaults */
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
   /* set css */
 .title {
@@ -13,26 +13,54 @@
     margin: auto;
     text-align: center;
     font-weight: bold;
-   }
+}
    
-   .list {
-       box-sizing: border-box;
-       width: 48%;
-       height: 400px;
-       margin: auto;
-       border: 2px solid gray;
-       text-align: center;
-       padding: 7px;
-       list-style-type: none;
-   }
+.list {
+    box-sizing: border-box;
+    width: 48%;
+    height: 400px;
+    margin: auto;
+    border: 2px solid gray;
+    text-align: center;
+    padding: 7px;
+    list-style-type: none;
+}
+
    
+button {
+  margin: 1%;
+ 
+}
+
 .watched {
   background-color: yellow;
-  float: right;
-  
 }
-  /* hover states */
-  ul :hover {
+.addBar {
+  margin: 5px;
+  text-align: center;
+}
+.watched-tab {
+  float: left;
+  border: 1px solid grey;
+  padding: 1px;
+}
+.to-watch-tab {
+  float: left;
+  margin: 0px 0px 0px 5px;
+  border: 1px solid grey;
+  padding: 1px;
+}
+
+  /*---------- hover states------------- */
+   li :hover {
     cursor: pointer;
-  }
+  } 
  
+  .to-watch-tab:hover {
+    cursor: pointer;
+    background-color: yellow;
+  }
+  .watched-tab:hover {
+    cursor: pointer;
+    background-color: yellow;
+  } 

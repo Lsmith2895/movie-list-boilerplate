@@ -12,7 +12,10 @@ class MovieList extends React.Component {
         return (
             <ul>
                 {this.props.movies.map(
-                    (entry, idx) => <MovieListEntry value={entry} key={entry + idx} />)
+                    (entry, idx) => <MovieListEntry 
+                    value={entry} 
+                    key={entry + idx} 
+                    toggle={this.props.toggle}/>)
                 }
                 
             </ul>
