@@ -7,8 +7,8 @@ class WatchToggle extends React.Component {
     render() {
         return (
             <div className='watch-button-container'>
-                <div className='watched-tab'> watched</div>
-                <div className='to-watch-tab'>to watch</div>
+                <div className='watched-tab' onClick={this.props.toggleWatched}> watched</div>
+                <div className='to-watch-tab' onClick={this.props.toggleToWatch}>to watch</div>
 
             </div>
         )

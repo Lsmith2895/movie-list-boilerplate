@@ -11,19 +11,23 @@ class App extends React.Component {
     super(props);
     this.state = {
       movies: [],
-      value: ''
+      value: '',
+      watched: null
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleRenderToWatch = this.handleRenderToWatch.bind(this);
+    this.handleRenderWatched = this.handleRenderWatched.bind(this);
     this.handleWatchedToggle = this.handleWatchedToggle.bind(this);
   }
 
+  //set value of state for search purposes
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  
+  //search for movies within state
   handleSearch() {
     var movieName = this.state.value;
     var renderList = [];
@@ -50,7 +54,7 @@ class App extends React.Component {
     this.setState({ movies: renderList })
     event.preventDefault();
   }
-
+  //add items to movie list
   handleAdd() {
     if (this.state.value.length > 0) {
       var movieName = this.state.value; //title
@@ -61,21 +65,76 @@ class App extends React.Component {
     event.preventDefault();
   }
 
+  //change watched status of individual entry 
   handleWatchedToggle(title) {
     var newState = this.state.movies;
 
-    for (var i = 0; i < newState.length; i++){
-      if ( title === newState[i].title) {
+    for (var i = 0; i < newState.length; i++) {
+      if (title === newState[i].title) {
         newState[i].watched = !newState[i].watched
       }
     }
-    
-    console.log(newState)
-    this.setState({movies: newState})
+
+    this.setState({ movies: newState })
   }
 
+  //make function to handle rendering of watched or unwatched movies
+  handleRenderToWatch() {
+    //set status of state's watched prop according to which button was selected
+    // ie watched or to watch
+    var newState = this.state;
+     newState.watched = false;
+     this.setState(newState);
+     event.preventDefault();
+  }
+  handleRenderWatched() {
+    var newState = this.state;
+    newState.watched = true;
+    this.setState(newState);
+    event.preventDefault();
+  }
 
   render() {
+    const MoviesToShow = this.state.watched;
+    var moviesToRender;
+
+    if (MoviesToShow === null) {
+      //render all movies
+      moviesToRender = <MovieList
+        movies={this.state.movies}
+        handleChange={this.handleChange}
+        toggle={this.handleWatchedToggle}
+      />
+
+    } else if (MoviesToShow === false) {
+      //render to watch movies aka movies with false watched values
+      var toWatch = [];
+      for (var i = 0; i < this.state.movies.length; i++) {
+        if (this.state.movies[i].watched === false) {
+          toWatch.push(this.state.movies[i])
+        }
+      }
+      moviesToRender = <MovieList
+        movies={toWatch}
+        handleChange={this.handleChange}
+        toggle={this.handleWatchedToggle}
+      />
+    } else {
+      //render watched movies
+      var watch = [];
+      for (var i = 0; i < this.state.movies.length; i++) {
+        
+        if (this.state.movies[i].watched === true) {
+          watch.push(this.state.movies[i])
+        }
+      }
+      
+      moviesToRender = <MovieList
+        movies={watch}
+        handleChange={this.handleChange}
+        toggle={this.handleWatchedToggle}
+      />
+    }
 
     return (
       <div>
@@ -95,12 +154,12 @@ class App extends React.Component {
             searchFunc={this.handleSearch}
             value={this.state.value}
           />
-          <WatchToggle/>
-          <MovieList 
-          movies={this.state.movies} 
-          handleChange={this.handleChange}
-          toggle={this.handleWatchedToggle}
+          <WatchToggle
+            toggleToWatch={this.handleRenderToWatch}
+            toggleWatched={this.handleRenderWatched}
           />
+          {moviesToRender}
+
         </div>
       </div>
     )
@@ -109,3 +168,4 @@ class App extends React.Component {
 }
 
 export default App;
+
