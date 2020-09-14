@@ -10,7 +10,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [],
+      movies: [ {title: 'Mean Girls'},
+      {title: 'Hackers'},
+      {title: 'The Grey'},
+      {title: 'Sunshine'},
+      {title: 'Ex Machina'},],
       value: '',
       watched: null
     }
@@ -68,13 +72,11 @@ class App extends React.Component {
   //change watched status of individual entry 
   handleWatchedToggle(title) {
     var newState = this.state.movies;
-
     for (var i = 0; i < newState.length; i++) {
       if (title === newState[i].title) {
         newState[i].watched = !newState[i].watched
       }
     }
-
     this.setState({ movies: newState })
   }
 
@@ -98,6 +100,7 @@ class App extends React.Component {
     const MoviesToShow = this.state.watched;
     var moviesToRender;
 
+    //conditional rednering for movies(watched, to watch, or all)
     if (MoviesToShow === null) {
       //render all movies
       moviesToRender = <MovieList
@@ -159,7 +162,6 @@ class App extends React.Component {
             toggleWatched={this.handleRenderWatched}
           />
           {moviesToRender}
-
         </div>
       </div>
     )
