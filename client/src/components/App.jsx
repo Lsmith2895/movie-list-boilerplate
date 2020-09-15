@@ -3,6 +3,7 @@ import MovieList from './MovieList.jsx';
 import SearchBar from './SearchBar.jsx';
 import AddBar from './AddBar.jsx';
 import WatchToggle from './watchToggle';
+import axios from 'axios';
 
 
 class App extends React.Component {
@@ -10,20 +11,31 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [ {title: 'Mean Girls'},
-      {title: 'Hackers'},
-      {title: 'The Grey'},
-      {title: 'Sunshine'},
-      {title: 'Ex Machina'},],
+      movies: [],
       value: '',
       watched: null
     }
+
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRenderToWatch = this.handleRenderToWatch.bind(this);
     this.handleRenderWatched = this.handleRenderWatched.bind(this);
     this.handleWatchedToggle = this.handleWatchedToggle.bind(this);
+  }
+
+  componentDidMount(){
+    //add som ed
+    axios.get('http://www.omdbapi.com/?s=blade&apikey=6436bd6b').then((response) => {
+      this.setState((state)=> {
+        //add key of title and add key of watched to match previous info
+         var addedKeys = response.data.Search.map(function(movie){
+          return {...movie, title: movie.Title, watched: false}
+         });
+        return {movies: addedKeys};
+      })
+      });
+
   }
 
   //set value of state for search purposes
@@ -170,4 +182,5 @@ class App extends React.Component {
 }
 
 export default App;
+
 

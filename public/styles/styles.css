@@ -18,7 +18,7 @@ ul {
 .list {
     box-sizing: border-box;
     width: 48%;
-    height: 400px;
+    height: auto;
     margin: auto;
     border: 2px solid gray;
     text-align: center;

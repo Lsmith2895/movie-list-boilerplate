@@ -32,4 +32,4 @@ export default AddBar;
   //in order to toggle which list it lives in
 
   //kick off app in terminal with 
-    // npm run-script build, and live-server
+    // npm start
