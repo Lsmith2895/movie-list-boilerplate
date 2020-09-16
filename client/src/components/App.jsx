@@ -25,18 +25,21 @@ class App extends React.Component {
     this.handleMovieSecondaryData = this.handleMovieSecondaryData.bind(this);
   }
   //add some dummy data on mount
-  componentDidMount(){
-    //add som ed
-    axios.get('http://www.omdbapi.com/?s=blade&apikey=6436bd6b').then((response) => {
+  componentDidMount() {
+    //add some data
+    axios.get('/api/movies')
+    .then((response) => {
       this.setState((state)=> {
         //add key of title and add key of watched to match previous info
-         var addedKeys = response.data.Search.map(function(movie){
+         var addedKeys = response.data.map(function(movie){
           return {...movie, title: movie.Title, watched: false, show: false}
          });
         return {movies: addedKeys};
       })
-      });
-
+      })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   //set value of state for search purposes
