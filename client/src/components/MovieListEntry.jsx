@@ -12,9 +12,16 @@ class MovieListEntry extends React.Component {
             movieToRender = <div>
                 {this.props.value.title}
                 <div> Year: {this.props.value.Year} </div>
-                <div>Watched: {this.props.value.watched.toString()}</div>
                 <div>imdbID: {this.props.value.imdbID}</div>
                 <img src={this.props.value.Poster}></img>
+                <button
+                    className='watched'
+                    type="button"
+                    onClick={() => {
+                        this.props.toggle(this.props.value.title)
+                    }}
+                >WATCHED</button>
+                
             </div>
         } else {
             movieToRender = <div>{this.props.value.title}</div>
@@ -26,13 +33,7 @@ class MovieListEntry extends React.Component {
                 <div onClick={() => { this.props.showMovie(this.props.value.title) }}>
                     {movieToRender}
                 </div>
-                <button
-                    className='watched'
-                    type="button"
-                    onClick={() => {
-                        this.props.toggle(this.props.value.title)
-                    }}
-                >WATCHED</button>
+                
             </li>
         )
     }
