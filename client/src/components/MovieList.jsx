@@ -7,7 +7,7 @@ class MovieList extends React.Component {
     }
 
     render() {
-        
+
         return (
             <ul>
                 {this.props.movies.map(
@@ -16,9 +16,9 @@ class MovieList extends React.Component {
                             value={entry}
                             key={entry + idx}
                             toggle={this.props.toggle}
-                        />)
-                }
-
+                            showMovie={this.props.showMovie}
+                        />
+                )}
             </ul>
         )
     }

@@ -22,15 +22,16 @@ class App extends React.Component {
     this.handleRenderToWatch = this.handleRenderToWatch.bind(this);
     this.handleRenderWatched = this.handleRenderWatched.bind(this);
     this.handleWatchedToggle = this.handleWatchedToggle.bind(this);
+    this.handleMovieSecondaryData = this.handleMovieSecondaryData.bind(this);
   }
-
+  //add some dummy data on mount
   componentDidMount(){
     //add som ed
     axios.get('http://www.omdbapi.com/?s=blade&apikey=6436bd6b').then((response) => {
       this.setState((state)=> {
         //add key of title and add key of watched to match previous info
          var addedKeys = response.data.Search.map(function(movie){
-          return {...movie, title: movie.Title, watched: false}
+          return {...movie, title: movie.Title, watched: false, show: false}
          });
         return {movies: addedKeys};
       })
@@ -107,6 +108,16 @@ class App extends React.Component {
     this.setState(newState);
     event.preventDefault();
   }
+  //handle showing a movies secondary data
+  handleMovieSecondaryData(title) {
+    var newState = this.state.movies
+      for ( var i = 0; i < newState.length; i++ ) {
+        if(newState[i].title === title) {
+          newState[i].show = !newState[i].show
+        }
+      }
+      this.setState({movies: newState})
+  }
 
   render() {
     const MoviesToShow = this.state.watched;
@@ -119,6 +130,7 @@ class App extends React.Component {
         movies={this.state.movies}
         handleChange={this.handleChange}
         toggle={this.handleWatchedToggle}
+        showMovie={this.handleMovieSecondaryData}
       />
 
     } else if (MoviesToShow === false) {
@@ -133,6 +145,7 @@ class App extends React.Component {
         movies={toWatch}
         handleChange={this.handleChange}
         toggle={this.handleWatchedToggle}
+        showMovie={this.handleMovieSecondaryData}
       />
     } else {
       //render watched movies
@@ -148,6 +161,7 @@ class App extends React.Component {
         movies={watch}
         handleChange={this.handleChange}
         toggle={this.handleWatchedToggle}
+        showMovie={this.handleMovieSecondaryData}
       />
     }
 
